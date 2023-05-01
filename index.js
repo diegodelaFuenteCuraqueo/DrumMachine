@@ -5,7 +5,10 @@ import { AudioPlayer } from "./src/AudioPlayer.js"
 
 document.addEventListener('click', function() {
   window.AUDIO_CONTEXT = new (window.AudioContext || window.webkitAudioContext)()
-  const lane1 = new Lane(steps, "../assets/drum.mp3")
+  const lane1 = new Lane(steps, "../assets/kick.mp3", document.getElementById("drumMachine"), 1)
+  const lane2 = new Lane(steps, "../assets/snare.mp3", document.getElementById("drumMachine"), 2)
+  const lane3 = new Lane(steps, "../assets/hihat.mp3", document.getElementById("drumMachine"), 3)
+
 }, { once: true });
 
 
@@ -16,7 +19,6 @@ tempo.addEventListener('change', (event) => {
 const timeline = new StepTimeline(parseFloat(tempo.value))
 const steps = new Steps()
 steps.attachTimeline(timeline)
-
 
 const OnOff = document.getElementById("OnOff")
 OnOff.onclick = () => {

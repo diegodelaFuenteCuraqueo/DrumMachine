@@ -1,9 +1,13 @@
 import { AudioPlayer } from "./AudioPlayer.js"
+import { StepButtonsManager } from "./StepButtonsManager.js"
 
 export class Lane {
-  constructor(stepTimeline, audioFilePath = "../assets/drum.mp3") {
+  constructor(stepTimeline, audioFilePath = "", drumMachineDivContainer, laneIndex = 0) {
     console.log("Lane ~ constructor", audioFilePath)
     this.audioPlayer = new AudioPlayer(window.AUDIO_CONTEXT, audioFilePath)
+    this.container = drumMachineDivContainer
+    this.buttonManager = new StepButtonsManager(this.container)
+    this.laneIndex = laneIndex
     this.steps = this.getBtns()
     this.pattern = [0,0,0,0,
                     0,0,0,0,
@@ -33,17 +37,14 @@ export class Lane {
 
   checkStep = (event) => {
     console.log("check step", event)
-    const step = event.detail.step //- 1
+    const step = event.detail.step - 1
     this.step(step)
     this.pattern[step] === 1 ? console.log("play") : console.log("stop")
   }
 
   getBtns = () => {
-    const btns = []
-    for (let i = 0; i < 16; i++) {
-      btns.push(document.getElementById(`lane1.${i + 1}`))
-    }
-    return btns
+    this.buttonManager.createLane(this.laneIndex, "lane 1")
+    return this.buttonManager.getBtns()
   }
 
   reset = () => {

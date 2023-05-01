@@ -1,12 +1,45 @@
 body {
   background: rgb(18, 18, 61);
 }
+
+#DMoptions {
+  background: rgb(18, 18, 61);
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 3%;
+  width: 750px;
+  height: 30px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+#drumMachine {
+  background: rgb(18, 18, 61);
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 3%;
+  width: 750px;
+  height: 120px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
 .step {
   width: 30px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .stepCounter {
   pointer-events: none;
+}
+
+.stepBtn {
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 10%;
+  width: 30px;
+  color: rgb(18, 18, 61);
+  cursor: pointer;
+  margin: 5px 6.9px;
 }
 
 .label {

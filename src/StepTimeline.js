@@ -30,15 +30,17 @@ export class StepTimeline {
     console.log("StepTimeline ~ set tempo", tempo)
     this.bpm = tempo * 4
     this.beatDuration = 60000 / this.bpm // Convert from BPM to milliseconds
-    //this.nextBeatTime = performance.now() + this.beatDuration
   }
 
   playTick = () => {
     if (this.on) {
-      // Check if the desired time has passed
-      const currentTime = performance.now()
+      const currentTime = performance.now() // Check if the desired time has passed
       if (currentTime >= this.nextBeatTime) {
-        const timelineEvent = new CustomEvent('timelineChanged', { bubbles: true, detail: { currentStep: this.currentStep }});
+        const eventDetail = {
+          bubbles: true,
+          detail: { currentStep: this.currentStep }
+        }
+        const timelineEvent = new CustomEvent('timelineChanged', eventDetail);
         this.timelineChanged.dispatchEvent(timelineEvent);
 
         // Update the target time for the next tick

@@ -12,11 +12,11 @@ export class Steps {
   }
 
   addEventListener(eventName, listener) {
-    this.stepChanged.addEventListener(eventName, listener);
+    this.stepChanged.addEventListener(eventName, listener)
   }
 
   removeEventListener(eventName, listener) {
-    this.stepChanged.removeEventListener(eventName, listener);
+    this.stepChanged.removeEventListener(eventName, listener)
   }
 
   getBtns = () => {
@@ -36,8 +36,8 @@ export class Steps {
       }
     })
     this.currentStep = (this.currentStep + 1) % this.numberOfSteps
-    const stepChangedEvent = new CustomEvent('stepChanged', { bubbles: true, detail: { step: this.currentStep }});
-    this.stepChanged.dispatchEvent(stepChangedEvent);
+    const stepChangedEvent = new CustomEvent('stepChanged', { bubbles: true, detail: { step: this.currentStep }})
+    this.stepChanged.dispatchEvent(stepChangedEvent)
 
   }
 
