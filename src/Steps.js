@@ -37,7 +37,6 @@ export class Steps {
     })
     this.currentStep = (this.currentStep + 1) % this.numberOfSteps
     const stepChangedEvent = new CustomEvent('stepChanged', { bubbles: true, detail: { step: this.currentStep }});
-    console.log("stepChangedEvent", stepChangedEvent)
     this.stepChanged.dispatchEvent(stepChangedEvent);
 
   }

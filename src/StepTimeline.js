@@ -28,33 +28,22 @@ export class StepTimeline {
 
   setTempo (tempo) {
     console.log("StepTimeline ~ set tempo", tempo)
-    this.bpm = tempo
-    // Calculate the interval based on the BPM
+    this.bpm = tempo * 4
     this.beatDuration = 60000 / this.bpm // Convert from BPM to milliseconds
-    this.nextBeatTime = performance.now() + this.beatDuration
-  }
-
-  setEvent = (event) => {
-    console.log("StepTimeline ~ setEvent")
-    this.event = event
+    //this.nextBeatTime = performance.now() + this.beatDuration
   }
 
   playTick = () => {
-    //console.log("play tick")
-    // Check if the desired time has passed
     if (this.on) {
+      // Check if the desired time has passed
       const currentTime = performance.now()
       if (currentTime >= this.nextBeatTime) {
-        // Play the tick sound at the desired time
-        console.log("StepTimeline ~ tick")
         const timelineEvent = new CustomEvent('timelineChanged', { bubbles: true, detail: { currentStep: this.currentStep }});
         this.timelineChanged.dispatchEvent(timelineEvent);
 
-        //this.event ? this.event() : console.log("no event")
         // Update the target time for the next tick
         this.nextBeatTime += this.beatDuration
       }
-      // Request the next animation frame
       requestAnimationFrame(this.playTick)
     }
   }

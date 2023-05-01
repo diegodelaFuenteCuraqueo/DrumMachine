@@ -1,5 +1,9 @@
+import { AudioPlayer } from "./AudioPlayer.js"
+
 export class Lane {
-  constructor(stepTimeline) {
+  constructor(stepTimeline, audioFilePath = "../assets/drum.mp3") {
+    console.log("Lane ~ constructor", audioFilePath)
+    this.audioPlayer = new AudioPlayer(window.AUDIO_CONTEXT, audioFilePath)
     this.steps = this.getBtns()
     this.pattern = [0,0,0,0,
                     0,0,0,0,
@@ -18,17 +22,18 @@ export class Lane {
 
   step = (stepIndex) => {
     this.steps.forEach((btn, index) => {
-      if (index === stepIndex) {
+      if (index === stepIndex && this.pattern[index] === 1) {
         btn.style.border = "1px solid red"
+        this.audioPlayer.play()
       } else {
-        btn.style.border = ""
+        btn.style.border = "1px solid white"
       }
     })
   }
 
   checkStep = (event) => {
     console.log("check step", event)
-    const step = event.detail.step - 1
+    const step = event.detail.step //- 1
     this.step(step)
     this.pattern[step] === 1 ? console.log("play") : console.log("stop")
   }
