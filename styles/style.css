@@ -1,0 +1,14 @@
+.step {
+  width: 30px;
+}
+
+.stepCounter {
+  pointer-events: none;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: bold;
+  color: blue;
+  width: 100px;
+}
