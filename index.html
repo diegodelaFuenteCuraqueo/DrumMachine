@@ -2,14 +2,15 @@
 <html lang="en">
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <meta charset="utf-8" />
   </head>
   <body>
     <div id="DMoptions">
-      <button id="OnOff">Start</button>
+      <button id="OnOff" type="button" class="btn btn-primary">Start</button>
       <label for="tempo">Tempo :
-        <input type="number" value="60" id="tempo" /> BPM </input>
+        <input type="number" value="60" id="tempo" style="width:50px"/>
       </label>
       <br>
     </div>
@@ -32,7 +33,6 @@
         <button id="btn14" class="step stepCounter">14</button>
         <button id="btn15" class="step stepCounter">15</button>
         <button id="btn16" class="step stepCounter">16</button>
-        <label class="label">Steps  :</label>
       </div>
     </div>
     <script type="module" src="index.js"></script>

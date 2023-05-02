@@ -6,9 +6,9 @@ body {
   background: rgb(18, 18, 61);
   border: 1px solid rgb(255, 255, 255);
   border-radius: 3%;
-  width: 750px;
-  height: 30px;
-  margin: 0 auto;
+  width: 800px;
+  height: 80px;
+  margin: 10px auto;
   padding: 10px;
 }
 
@@ -16,10 +16,18 @@ body {
   background: rgb(18, 18, 61);
   border: 1px solid rgb(255, 255, 255);
   border-radius: 3%;
-  width: 750px;
-  height: 120px;
+  width: 800px;
   margin: 0 auto;
   padding: 10px;
+}
+
+#stepsLine {
+  background: rgb(18, 18, 61);
+  margin-bottom: 20px;
+}
+
+.lane {
+  margin-bottom: 10px;
 }
 
 .step {
@@ -30,6 +38,7 @@ body {
 
 .stepCounter {
   pointer-events: none;
+  border-radius: 50%;
 }
 
 .stepBtn {
@@ -39,12 +48,11 @@ body {
   width: 30px;
   color: rgb(18, 18, 61);
   cursor: pointer;
-  margin: 5px 6.9px;
+  margin: 5px 6.8px;
 }
 
-.label {
+label {
   font-size: 12px;
   font-weight: bold;
-  color: rgb(255, 255, 255);
-  width: 100px;
+  color: rgb(255, 255, 255) !important;
 }

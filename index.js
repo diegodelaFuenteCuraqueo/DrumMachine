@@ -1,14 +1,21 @@
 import { StepTimeline } from "./src/StepTimeline.js"
 import { Steps } from "./src/Steps.js"
 import { Lane } from "./src/Lane.js"
+import { LaneManager } from "./src/LaneManager.js"
 import { AudioPlayer } from "./src/AudioPlayer.js"
+
+const lanesData = [
+  {audioFile : "../assets/kick.mp3"},
+  {audioFile : "../assets/snare.mp3"},
+  {audioFile : "../assets/hihat.mp3"},
+  {audioFile : "../assets/clave.mp3"}
+]
+
+const drumMachineContainer = document.getElementById("drumMachine")
 
 document.addEventListener('click', function() {
   window.AUDIO_CONTEXT = new (window.AudioContext || window.webkitAudioContext)()
-  const lane1 = new Lane(steps, "../assets/kick.mp3", document.getElementById("drumMachine"), 1)
-  const lane2 = new Lane(steps, "../assets/snare.mp3", document.getElementById("drumMachine"), 2)
-  const lane3 = new Lane(steps, "../assets/hihat.mp3", document.getElementById("drumMachine"), 3)
-
+  window.lanes = new LaneManager(drumMachineContainer, steps, lanesData)
 }, { once: true });
 
 

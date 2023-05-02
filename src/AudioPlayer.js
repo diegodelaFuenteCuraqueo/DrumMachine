@@ -1,4 +1,13 @@
+/**
+ * @class AudioPlayer
+ * @description A class that uses the Web Audio Api to play audio files
+ */
 export class AudioPlayer {
+  /**
+   * @description The constructor will set the audioContext and the filepath
+   * @param {AudioContext} audioContext - The audio context to use
+   * @param {String} filepath - The path to the audio file
+   */
   constructor(audioContext, filepath = ""){
     this.audioContext = audioContext
     this.filepath = filepath
@@ -10,6 +19,9 @@ export class AudioPlayer {
     this.filepath = filepath
   }
 
+  /**
+   * @returns {Promise<AudioBuffer>} - A promise that resolves to an AudioBuffer
+   */
   loadSound = () => {
     return fetch(this.filepath)
       .then(response => response.arrayBuffer())
@@ -19,7 +31,6 @@ export class AudioPlayer {
   }
 
   play = () => {
-    //this.source.stop();
     this.loadSound().then((buffer) => {
       this.source = this.audioContext.createBufferSource();
       this.source.buffer = buffer;

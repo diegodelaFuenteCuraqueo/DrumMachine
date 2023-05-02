@@ -1,3 +1,7 @@
+/**
+ * @class Steps
+ * @description A class that represents the steps of the drum machine
+ */
 export class Steps {
   constructor(numberOfSteps = 16) {
     this.steps = this.getBtns()
@@ -32,7 +36,7 @@ export class Steps {
       if (index === this.currentStep) {
         btn.style.backgroundColor = "red"
       } else {
-        btn.style.backgroundColor = "gray"
+        btn.style.backgroundColor = "white"
       }
     })
     this.currentStep = (this.currentStep + 1) % this.numberOfSteps
@@ -44,7 +48,7 @@ export class Steps {
   reset = () => {
     this.currentStep = 0
     this.steps.forEach((btn) => {
-      btn.style.backgroundColor = "gray"
+      btn.style.backgroundColor = "white"
     })
   }
 }
