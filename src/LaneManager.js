@@ -3,7 +3,7 @@ import { Lane } from './Lane.js'
 export class LaneManager {
 
   /**
-   * @param {*} container
+   * @param {HTMLDivElement} container
    * @param {Object} lanesData - an object containing the data for instantiating the lanes. {stepTimeline, audioFilePath, drumMachineDivContainer}
    */
   constructor(container, stepTimeline, lanesData = {}) {

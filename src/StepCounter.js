@@ -1,14 +1,14 @@
 /**
- * @class Steps
+ * @class StepCounter
  * @description A class that represents the steps of the drum machine
  */
-export class Steps {
+export class StepCounter {
   constructor(numberOfSteps = 16) {
     this.steps = this.getBtns()
     this.currentStep = 0
     this.numberOfSteps = numberOfSteps
     this.stepChanged = new EventTarget()
-    this.reset()
+    this.clearSteps()
   }
 
   attachTimeline = (timeline) => {
@@ -32,20 +32,30 @@ export class Steps {
   }
 
   increaseStep = () => {
-    this.steps.forEach((btn, index) => {
-      if (index === this.currentStep) {
-        btn.style.backgroundColor = "red"
-      } else {
-        btn.style.backgroundColor = "white"
-      }
-    })
-    this.currentStep = (this.currentStep + 1) % this.numberOfSteps
-    const stepChangedEvent = new CustomEvent('stepChanged', { bubbles: true, detail: { step: this.currentStep }})
-    this.stepChanged.dispatchEvent(stepChangedEvent)
+    this.emitStep()
+    this.paintStep()
 
+    this.currentStep = this.currentStep >= (this.numberOfSteps - 1)
+      ? 0
+      : this.currentStep + 1
   }
 
-  reset = () => {
+  emitStep = () => {
+    const eventData = {
+      bubbles: true,
+      detail: { step: this.currentStep }
+    }
+    const stepChangedEvent = new CustomEvent('stepChanged', eventData)
+    this.stepChanged.dispatchEvent(stepChangedEvent)
+  }
+
+  paintStep = () => {
+    this.steps.forEach((btn, index) => {
+      btn.style.backgroundColor = index === this.currentStep ? "red" : "white"
+    })
+  }
+
+  clearSteps = () => {
     this.currentStep = 0
     this.steps.forEach((btn) => {
       btn.style.backgroundColor = "white"

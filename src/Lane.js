@@ -8,16 +8,15 @@ import { StepButtonsManager } from "./StepButtonsManager.js"
 export class Lane {
 
   /**
-   * @param {*} stepTimeline - the timeline of the drum machine
-   * @param {*} audioFilePath - the path to the audio file
-   * @param {*} drumMachineDivContainer - the div where the lane will be appended
-   * @param {*} laneIndex - the index of the lane (must be unique)
+   * @param { StepTimeline } stepTimeline - the timeline of the drum machine
+   * @param { string } audioFilePath - the path to the audio file
+   * @param { HTMLDivElement } drumMachineDivContainer - the div where the lane will be appended
+   * @param { number } laneIndex - the index of the lane (must be unique)
    */
   constructor(stepTimeline, audioFilePath = "", drumMachineDivContainer, laneIndex = 0) {
-    console.log("Lane ~ constructor", audioFilePath)
     this.audioPlayer = new AudioPlayer(window.AUDIO_CONTEXT, audioFilePath)
     this.container = drumMachineDivContainer
-    this.buttonManager = new StepButtonsManager(this.container)
+    this.buttonManager = new StepButtonsManager(this.container, audioFilePath)
     this.laneIndex = laneIndex
     this.steps = this.getBtns()
     this.pattern = [0,0,0,0,
@@ -37,10 +36,11 @@ export class Lane {
 
   /**
    * @method step
-   * @param {Number} stepIndex - the index of the step to highlight
+   * @param { number } stepIndex - the index of the step to highlight
    * @description This method will highlight the step and play the audio file if the step is active.
    */
   step = (stepIndex) => {
+    console.log("Lane received step:", stepIndex)
     this.steps.forEach((btn, index) => {
       if (index === stepIndex && this.pattern[index] === 1) {
         btn.style.border = "1px solid red"
@@ -52,13 +52,13 @@ export class Lane {
   }
 
   checkStep = (event) => {
-    const step = event.detail.step - 1
+    const step = event.detail.step
     this.step(step)
   }
 
   /**
    * Obtains an array of the buttons of the lane
-   * @returns {Array <HTMLButtonElement>} - an array of the buttons of the lane
+   * @returns { Array <HTMLButtonElement> } - an array of the buttons of the lane
    */
   getBtns = () => {
     this.buttonManager.createLane(this.laneIndex, "lane 1")

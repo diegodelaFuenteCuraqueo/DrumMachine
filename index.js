@@ -1,8 +1,6 @@
-import { StepTimeline } from "./src/StepTimeline.js"
-import { Steps } from "./src/Steps.js"
-import { Lane } from "./src/Lane.js"
+import { BeatTimeline } from "./src/BeatTimeline.js"
+import { StepCounter } from "./src/StepCounter.js"
 import { LaneManager } from "./src/LaneManager.js"
-import { AudioPlayer } from "./src/AudioPlayer.js"
 
 const lanesData = [
   {audioFile : "../assets/kick.mp3"},
@@ -18,13 +16,12 @@ document.addEventListener('click', function() {
   window.lanes = new LaneManager(drumMachineContainer, steps, lanesData)
 }, { once: true });
 
-
 const tempo = document.getElementById("tempo")
 tempo.addEventListener('change', (event) => {
   timeline.setTempo(parseFloat(event.target.value))
 })
-const timeline = new StepTimeline(parseFloat(tempo.value))
-const steps = new Steps()
+const timeline = new BeatTimeline(parseFloat(tempo.value))
+const steps = new StepCounter()
 steps.attachTimeline(timeline)
 
 const OnOff = document.getElementById("OnOff")
@@ -32,7 +29,7 @@ OnOff.onclick = () => {
   if (timeline.on) {
     console.log("stop")
     timeline.stop()
-    steps.reset()
+    steps.clearSteps()
     OnOff.innerHTML = "Start"
   } else {
     console.log("start")

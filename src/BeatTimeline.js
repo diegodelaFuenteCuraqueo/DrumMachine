@@ -1,10 +1,10 @@
-/** 
- * @class StepTimeline
+/**
+ * @class BeatTimeline
  * @description A class that controls the timing of a step sequencer
  */
-export class StepTimeline {
+export class BeatTimeline {
   /**
-   * @param {number} bpm - The tempo of the step sequencer in beats per minute
+   * @param { number } bpm - The tempo of the step sequencer in beats per minute
    * This value will be multiplied by 4 to get the required subdivision.
    */
   constructor (bpm = 60) {
@@ -23,24 +23,30 @@ export class StepTimeline {
   }
 
   start () {
-    console.log("StepTimeline ~ start")
     this.on = true
     this.nextBeatTime = performance.now() + this.beatDuration
     this.playTick()
   }
 
   stop () {
-    console.log("StepTimeline ~ stop")
     this.on = false
   }
 
   /**
-   * @param {number} tempo - beats per mitute
+   * @param { number } tempo - beats per mitute
    */
   setTempo = (tempo) => {
-    console.log("StepTimeline ~ set tempo", tempo)
     this.bpm = tempo * 4
     this.beatDuration = 60000 / this.bpm // Convert from BPM to milliseconds
+  }
+
+  emitTick = () => {
+    const eventDetail = {
+      bubbles: true,
+      detail: { currentStep: this.currentStep }
+    }
+    const timelineEvent = new CustomEvent('timelineChanged', eventDetail);
+    this.timelineChanged.dispatchEvent(timelineEvent);
   }
 
   /**
@@ -51,13 +57,7 @@ export class StepTimeline {
     if (this.on) {
       const currentTime = performance.now() // Check if the desired time has passed
       if (currentTime >= this.nextBeatTime) {
-        const eventDetail = {
-          bubbles: true,
-          detail: { currentStep: this.currentStep }
-        }
-        const timelineEvent = new CustomEvent('timelineChanged', eventDetail);
-        this.timelineChanged.dispatchEvent(timelineEvent);
-
+        this.emitTick()
         // Update the target time for the next tick
         this.nextBeatTime += this.beatDuration
       }
