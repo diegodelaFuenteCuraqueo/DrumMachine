@@ -17,13 +17,24 @@ export class LaneManager {
 
   createLanes = () => {
     this.lanesData.forEach((laneData, index) => {
-      const lane = new Lane(this.stepTimeline, laneData.audioFile, this.container, index)
-      this.lanes.push(lane)
+      try {
+        const lane = new Lane(this.stepTimeline, laneData.audioFile, this.container, index)
+        this.lanes.push(lane)
+      } catch (error) {
+        console.error(error)
+      }
     })
   }
 
-  addLane = (laneData) => {
-    const lane = new Lane(this.stepTimeline, laneData.audioFile, this.container, this.lanes.length)
+  addLane = (audioFile) => {
+    const lane = new Lane(this.stepTimeline, audioFile, this.container, this.lanes.length)
+    this.lanes.push(lane)
+  }
+
+  /**
+   * @param { Lane } lane - an instance of the Lane class to push.
+   */
+  pushLane = (lane) => {
     this.lanes.push(lane)
   }
 

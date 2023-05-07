@@ -1,10 +1,12 @@
 import { BeatTimeline } from "./src/BeatTimeline.js"
 import { StepCounter } from "./src/StepCounter.js"
 import { LaneManager } from "./src/LaneManager.js"
+import { Lane } from "./src/Lane.js"
 
+// TODO: fix this automatic loading, not working since changes in audioplayer
 const lanesData = [
-  {audioFile : "../assets/kick.mp3"},
-  {audioFile : "../assets/snare.mp3"},
+  {audioFile : "./assets/kick.mp3"},
+  {audioFile : "./assets/snare.mp3"},
   {audioFile : "../assets/hihat.mp3"},
   {audioFile : "../assets/clave.mp3"}
 ]
@@ -38,4 +40,22 @@ OnOff.onclick = () => {
   }
 }
 
+const addLane = document.getElementById("addLane")
+addLane.onclick = () => {
+  fileInput.click()
+}
+const fileInput = document.getElementById("audiofileInput")
+fileInput.addEventListener('change', (event) => {
 
+  const file = event.target.files[0]
+  const lane = new Lane(steps, "", drumMachineContainer)
+
+  const reader = new FileReader()
+  reader.onload = () => {
+    const arrayBuffer = reader.result
+    console.log(arrayBuffer)
+    lane.loadSoundFile(arrayBuffer)
+    window.lanes.pushLane(lane)
+  }
+  reader.readAsArrayBuffer(file)
+})

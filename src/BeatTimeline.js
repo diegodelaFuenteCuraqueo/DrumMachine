@@ -55,7 +55,7 @@ export class BeatTimeline {
    */
   playTick = () => {
     if (this.on) {
-      const currentTime = performance.now() // Check if the desired time has passed
+      const currentTime = performance.now()
       if (currentTime >= this.nextBeatTime) {
         this.emitTick()
         // Update the target time for the next tick

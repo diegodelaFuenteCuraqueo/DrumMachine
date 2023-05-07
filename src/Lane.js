@@ -70,6 +70,14 @@ export class Lane {
   }
 
   /**
+   * @param {*} arrayBuffer - the array buffer of the audio file
+   */
+  loadSoundFile = (arrayBuffer) => {
+    console.log("Loading sound file...", arrayBuffer)
+    this.audioPlayer.loadSoundFile(arrayBuffer)
+  }
+
+  /**
    * Resets the lane, setting all the steps to inactive
    */
   reset = () => {

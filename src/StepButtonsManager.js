@@ -16,7 +16,7 @@ export class StepButtonsManager {
   }
 
   setLaneNameFromFile = (filePath) => {
-    if (!filePath) return ""
+    if (!filePath || typeof filePath != "string") return ""
     const pathParts = filePath.split('/')
     const fileNameWithExtension = pathParts[pathParts.length - 1]
     const fileNameParts = fileNameWithExtension.split('.')

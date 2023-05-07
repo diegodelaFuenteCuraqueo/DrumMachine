@@ -20,7 +20,7 @@ export class AudioPlayer {
   }
 
   /**
-   * @returns {Promise<AudioBuffer>} - A promise that resolves to an AudioBuffer
+   * @returns { Promise<AudioBuffer> } - A promise that resolves to an AudioBuffer
    */
   loadSound = () => {
     return fetch(this.filepath)
@@ -30,12 +30,18 @@ export class AudioPlayer {
       })
   }
 
+  loadSoundFile = async (arrayBuffer) => {
+    this.buffer = await this.audioContext.decodeAudioData(arrayBuffer)
+  }
+
   play = () => {
-    this.loadSound().then((buffer) => {
-      this.source = this.audioContext.createBufferSource();
-      this.source.buffer = buffer;
-      this.source.connect(this.audioContext.destination);
-      this.source.start();
-    })
+    if (this.buffer) {
+      this.source = this.audioContext.createBufferSource()
+      this.source.buffer = this.buffer
+      this.source.connect(this.audioContext.destination)
+      this.source.start()
+    } else {
+      console.error("No sound file loaded")
+    }
   }
 }

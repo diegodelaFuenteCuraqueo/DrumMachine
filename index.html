@@ -7,11 +7,14 @@
     <meta charset="utf-8" />
   </head>
   <body>
+
     <div id="DMoptions">
       <button id="OnOff" type="button" class="btn btn-primary">Start</button>
       <label for="tempo">Tempo :
         <input type="number" value="60" id="tempo" style="width:50px"/>
       </label>
+      <input type="file" id="audiofileInput" accept=".wav, .mp3, .ogg, .aiff" multiple style="display:none"/>
+      <button id="addLane" type="button" class="btn btn-info">Add Lane</button>
       <br>
     </div>
 
@@ -36,6 +39,7 @@
       </div>
     </div>
     <script type="module" src="index.js"></script>
+
   </body>
 </html>
 
