@@ -3,19 +3,27 @@ import { StepCounter } from "./src/StepCounter.js"
 import { LaneManager } from "./src/LaneManager.js"
 import { Lane } from "./src/Lane.js"
 
-// TODO: fix this automatic loading, not working since changes in audioplayer
-const lanesData = [
-  {audioFile : "./assets/kick.mp3"},
-  {audioFile : "./assets/snare.mp3"},
-  {audioFile : "../assets/hihat.mp3"},
-  {audioFile : "../assets/clave.mp3"}
-]
-
+const filenames = ['kick.mp3', 'snare.mp3', 'hihat.mp3', 'clave.mp3']
 const drumMachineContainer = document.getElementById("drumMachine")
 
 document.addEventListener('click', function() {
   window.AUDIO_CONTEXT = new (window.AudioContext || window.webkitAudioContext)()
-  window.lanes = new LaneManager(drumMachineContainer, steps, lanesData)
+  window.lanes = new LaneManager(drumMachineContainer, steps)
+
+  filenames.forEach((filename) => {
+    const fileUrl = `./assets/${filename}`
+    fetch(fileUrl)
+      .then((response) => response.arrayBuffer())
+      .then((arrayBuffer) => {
+        const lane = new Lane(steps, "", drumMachineContainer)
+        lane.loadSoundFile(arrayBuffer)
+        lane.setLaneLabel(filename)
+        window.lanes.pushLane(lane)
+      })
+      .catch((error) => {
+        console.log(`Failed to load ${fileUrl}:`, error)
+      })
+  })
 }, { once: true });
 
 const tempo = document.getElementById("tempo")

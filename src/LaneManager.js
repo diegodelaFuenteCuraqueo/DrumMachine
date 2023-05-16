@@ -3,20 +3,18 @@ import { Lane } from './Lane.js'
 export class LaneManager {
 
   /**
-   * @param {HTMLDivElement} container
-   * @param {Object} lanesData - an object containing the data for instantiating the lanes. {stepTimeline, audioFilePath, drumMachineDivContainer}
+   * @param { HTMLDivElement } container
+   * @param { StepTimeline } stepTimeline
    */
-  constructor(container, stepTimeline, lanesData = {}) {
+  constructor(container, stepTimeline) {
     this.container = container
     this.stepTimeline = stepTimeline
-    this.lanesData = lanesData
     this.lanes = []
-
-    this.createLanes()
   }
 
   createLanes = () => {
     this.lanesData.forEach((laneData, index) => {
+      console.log("createLanes", laneData)
       try {
         const lane = new Lane(this.stepTimeline, laneData.audioFile, this.container, index)
         this.lanes.push(lane)
@@ -27,6 +25,7 @@ export class LaneManager {
   }
 
   addLane = (audioFile) => {
+    console.log("Adding lane", audioFile)
     const lane = new Lane(this.stepTimeline, audioFile, this.container, this.lanes.length)
     this.lanes.push(lane)
   }

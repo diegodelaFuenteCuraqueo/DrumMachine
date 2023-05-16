@@ -5,8 +5,8 @@
 export class AudioPlayer {
   /**
    * @description The constructor will set the audioContext and the filepath
-   * @param {AudioContext} audioContext - The audio context to use
-   * @param {String} filepath - The path to the audio file
+   * @param { AudioContext } audioContext - The audio context to use
+   * @param { String } filepath - The path to the audio file
    */
   constructor(audioContext, filepath = ""){
     this.audioContext = audioContext
@@ -35,7 +35,7 @@ export class AudioPlayer {
   }
 
   play = () => {
-    if (this.buffer) {
+    if (this.buffer) { // here
       this.source = this.audioContext.createBufferSource()
       this.source.buffer = this.buffer
       this.source.connect(this.audioContext.destination)

@@ -69,6 +69,10 @@ export class Lane {
     return this.buttonManager.labelText
   }
 
+  setLaneLabel = (labelText) => {
+    this.buttonManager.setLaneLabel(labelText)
+  }
+
   /**
    * @param {*} arrayBuffer - the array buffer of the audio file
    */

@@ -71,4 +71,9 @@ export class StepButtonsManager {
     return this.laneName
   }
 
+  setLaneLabel = (newName) => {
+    this.laneName = newName
+    this.laneLabel.textContent = newName
+  }
+
 }
