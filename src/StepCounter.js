@@ -1,3 +1,5 @@
+import { colors } from '../constants.js'
+
 /**
  * @class StepCounter
  * @description A class that represents the steps of the drum machine
@@ -51,14 +53,16 @@ export class StepCounter {
 
   paintStep = () => {
     this.steps.forEach((btn, index) => {
-      btn.style.backgroundColor = index === this.currentStep ? "red" : "white"
+      btn.style.backgroundColor = index === this.currentStep
+        ? colors.step.current
+        : colors.step.notCurrent
     })
   }
 
   clearSteps = () => {
     this.currentStep = 0
     this.steps.forEach((btn) => {
-      btn.style.backgroundColor = "white"
+      btn.style.backgroundColor = colors.step.notCurrent
     })
   }
 }

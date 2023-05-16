@@ -1,5 +1,6 @@
 import { AudioPlayer } from "./AudioPlayer.js"
 import { StepButtonsManager } from "./StepButtonsManager.js"
+import { colors } from "../constants.js"
 
 /**
  * @class Lane
@@ -27,7 +28,9 @@ export class Lane {
     this.steps.forEach((btn, index) => {
       btn.onclick = () => {
         this.pattern[index] = this.pattern[index] === 0 ? 1 : 0
-        btn.style.backgroundColor = this.pattern[index] === 0 ? "gray" : "green"
+        btn.style.backgroundColor = this.pattern[index] === 0
+          ? colors.btn.background.inactive
+          : colors.btn.background.active
       }
     })
     stepTimeline.addEventListener('stepChanged', this.checkStep)
@@ -43,10 +46,10 @@ export class Lane {
     console.log("Lane received step:", stepIndex)
     this.steps.forEach((btn, index) => {
       if (index === stepIndex && this.pattern[index] === 1) {
-        btn.style.border = "1px solid red"
+        btn.style.border = colors.btn.border.active //"1px solid red"
         this.audioPlayer.play()
       } else {
-        btn.style.border = "1px solid white"
+        btn.style.border = colors.btn.border.inactive //"1px solid white"
       }
     })
   }
@@ -90,7 +93,7 @@ export class Lane {
                     0,0,0,0,
                     0,0,0,0]
     this.steps.forEach((btn) => {
-      btn.style.backgroundColor = "gray"
+      btn.style.backgroundColor = colors.btn.background.inactive
     })
   }
 }

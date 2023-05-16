@@ -2,6 +2,7 @@ import { BeatTimeline } from "./src/BeatTimeline.js"
 import { StepCounter } from "./src/StepCounter.js"
 import { LaneManager } from "./src/LaneManager.js"
 import { Lane } from "./src/Lane.js"
+import { github } from "./constants.js"
 
 const filenames = ['kick.mp3', 'snare.mp3', 'hihat.mp3', 'clave.mp3']
 const drumMachineContainer = document.getElementById("drumMachine")
@@ -11,7 +12,7 @@ document.addEventListener('click', function() {
   window.lanes = new LaneManager(drumMachineContainer, steps)
 
   filenames.forEach((filename) => {
-    const fileUrl = `./assets/${filename}`
+    const fileUrl = `${github.pagesURL}/assets/${filename}`
     fetch(fileUrl)
       .then((response) => response.arrayBuffer())
       .then((arrayBuffer) => {

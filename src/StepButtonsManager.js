@@ -76,4 +76,8 @@ export class StepButtonsManager {
     this.laneLabel.textContent = newName
   }
 
+  destroy = () => {
+    this.container.removeChild(this.container.lastChild)
+  }
+
 }

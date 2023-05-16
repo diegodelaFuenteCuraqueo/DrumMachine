@@ -41,7 +41,9 @@ export class LaneManager {
     const conf = confirm(`Are you sure you want to delete "${this.lanes[laneIndex].getLaneLabel()}" ?`)
     console.log(conf)
     if (conf) {
+      this.lanes[laneIndex].buttonManager.destroy()
       this.lanes.splice(laneIndex, 1)
     }
+
   }
 }
