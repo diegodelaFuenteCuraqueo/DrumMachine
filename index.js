@@ -5,7 +5,7 @@ import { Lane } from "./src/Lane.js"
 import { github } from "./constants.js"
 
 const filenames = ['kick.mp3', 'snare.mp3', 'hihat.mp3', 'clave.mp3']
-const drumMachineContainer = document.getElementById("drumMachine")
+const drumMachineContainer = document.getElementById("drumMachineLanes")
 
 document.addEventListener('click', function() {
   window.AUDIO_CONTEXT = new (window.AudioContext || window.webkitAudioContext)()
