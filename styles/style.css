@@ -1,29 +1,93 @@
+:root {
+  --main-bg-color: #131c1f;
+  --main-dark-color: #2A3E47;
+  --main-mid-color: #729E92;
+  --main-light-color: #BDC9A7;
+  --main-shine-color: #D1B884;
+}
+
 body {
-  background: rgb(18, 18, 61);
+  background: var(--main-bg-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
-#DMoptions {
-  background: rgb(18, 18, 61);
-  border: 1px solid rgb(255, 255, 255);
-  border-radius: 3%;
-  width: 800px;
-  height: 80px;
-  margin: 10px auto;
-  padding: 10px;
+#drumMachineBody {
+  top: 20px;
+  position: fixed;
 }
 
-#drumMachine {
-  background: rgb(18, 18, 61);
-  border: 1px solid rgb(255, 255, 255);
-  border-radius: 3%;
-  width: 800px;
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 90%;
   margin: 0 auto;
-  padding: 10px;
+  margin-right: 20px;
+  flex-wrap: nowrap;
+
+}
+
+.drumMachineDiv {
+  width: 90%;
+  max-width: 900px;
+  margin: 50px 50px 50px 50px;
+  box-shadow: 8px 8px 5px 5px black;
+}
+
+#drumMachineOptions {
+  background: var(--main-mid-color);
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 3%;
+  padding: 10px 10px 10px 10px;
+}
+
+#tempo {
+  width: 60px;
+  height: 30px;
+  font-size: 16px;
+}
+
+#drumMachineLanes {
+  background: var(--main-dark-color);
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 2%;
+  padding: 18px
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+}
+
+.add-lane-wrapper {
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+#OnOff {
+  flex-shrink: 0;
+  margin-right: 10px;
+  background-color: #BDC9A7;
+  border-color: #e7f6cc;
+  color: var(--main-dark-color);
+}
+#OnOff:hover {
+  background-color: #e7f6cc;
+  border-color: #e7f6cc;
+  color: var(--main-dark-color);
+}
+
+#addLaneBtn {
+  justify-self: end;
 }
 
 #stepsLine {
-  background: rgb(18, 18, 61);
-  margin-bottom: 20px;
+  background: var(--main-dark-color);
+  margin-bottom: 40px;
 }
 
 .lane {
@@ -32,13 +96,20 @@ body {
 
 .step {
   width: 30px;
+  height: 30px;
   margin-right: 5px;
   margin-left: 5px;
+}
+.stepBtn.step:hover {
+  background-color: blue;
 }
 
 .stepCounter {
   pointer-events: none;
   border-radius: 50%;
+  border: 0px;
+  background-color: var(--main-shine-color);
+  box-shadow: 3px 3px 2px 2px var(--main-bg-color);
 }
 
 .stepBtn {
@@ -49,10 +120,12 @@ body {
   color: rgb(18, 18, 61);
   cursor: pointer;
   margin: 5px 6.8px;
+  box-shadow: 2px 2px 2px 2px var(--main-bg-color);
 }
 
 label {
   font-size: 12px;
   font-weight: bold;
-  color: rgb(255, 255, 255) !important;
+  margin-bottom: unset;
+  color: var(--main-shine-color) !important;
 }

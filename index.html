@@ -8,18 +8,21 @@
   </head>
   <body>
 
-  <div id="drumMachineBody">
-    <div id="DMoptions">
-      <button id="OnOff" type="button" class="btn btn-primary">Start</button>
-      <label for="tempo">Tempo :
-        <input type="number" value="60" id="tempo" style="width:50px"/>
-      </label>
+  <div id="drumMachineBody" >
+    <div id="drumMachineOptions" class="container drumMachineDiv">
+      <div class="flex-container">
+        <button id="OnOff" type="button" class="btn btn-primary">Start</button>
+        <label for="tempo">Tempo :
+          <input type="number" value="60" id="tempo" min="1" max="250"/>
+        </label>
       <input type="file" id="audiofileInput" accept=".wav, .mp3, .ogg, .aiff" multiple style="display:none"/>
-      <button id="addLane" type="button" class="btn btn-info">Add Lane</button>
-      <br>
+      </div>
+      <div class="add-lane-wrapper">
+        <button id="addLane" type="button" class="btn btn-info">Add Lane</button>
+      </div>
     </div>
 
-    <div id="drumMachine">
+    <div id="drumMachineLanes" class="drumMachineDiv">
       <div id="stepsLine">
         <button id="btn1" class="step stepCounter">1</button>
         <button id="btn2" class="step stepCounter">2</button>
